@@ -1,0 +1,2 @@
+include openfast_toolbox/VERSION
+include data/*

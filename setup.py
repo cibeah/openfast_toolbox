@@ -3,7 +3,7 @@
 
 import os
 
-from setuptools import setup
+from setuptools import setup, find_packages
 
 ROOT = os.path.abspath(os.path.dirname(__file__))
 
@@ -12,6 +12,10 @@ with open("README.md", "r") as fh:
 
 with open(os.path.join(ROOT, "VERSION")) as version_file:
     VERSION = version_file.read().strip()
+
+# copy version within package
+with open(os.path.join(ROOT, "openfast_toolbox", "VERSION"), "w") as new_version_file:
+    new_version_file.write(VERSION)
 
 
 setup(
@@ -28,7 +32,8 @@ setup(
         "Programming Language :: Python :: 3.7",
         "Topic :: Software Development :: Version Control :: Git",
     ],
-    packages=["openfast_toolbox"],
+    packages=find_packages(include=['openfast_toolbox*']),
+    include_package_data=True,
     python_requires=">=3.6",
     install_requires=[
         "matplotlib",
